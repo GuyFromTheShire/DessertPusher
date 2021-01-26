@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private var revenue = 0
     private var dessertsSold = 0
-    
+
     private lateinit var binding: ActivityMainBinding
 
     
     data class Dessert(val imageId: Int, val price: Int, val startProductionAmount: Int)
 
-    // Create a list of all desserts, in order of when they start being produced
+    
     private val allDesserts = listOf(
             Dessert(R.drawable.cupcake, 5, 0),
             Dessert(R.drawable.donut, 10, 5),
