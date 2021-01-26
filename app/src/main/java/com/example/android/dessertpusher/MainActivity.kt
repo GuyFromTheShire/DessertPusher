@@ -38,13 +38,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     // Contains all the views
     private lateinit var binding: ActivityMainBinding
 
-    /** Dessert Data **/
-
-    /**
-     * Simple data class that represents a dessert. Includes the resource id integer associated with
-     * the image, the price it's sold for, and the startProductionAmount, which determines when
-     * the dessert starts to be produced.
-     */
+    
     data class Dessert(val imageId: Int, val price: Int, val startProductionAmount: Int)
 
     // Create a list of all desserts, in order of when they start being produced
