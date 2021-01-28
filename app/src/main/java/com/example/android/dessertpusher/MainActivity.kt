@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
-        dessertTimer = DessertTimer()
+        dessertTimer = DessertTimer(this.lifecycle)
         dessertTimer.startTimer()
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -148,13 +148,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     override fun onStart() {
         super.onStart()
-
         Timber.i("onStart called")
     }
 
     override fun onStop() {
         super.onStop()
-        dessertTimer.stopTimer()
         Timber.i("onStop called")
     }
 }
