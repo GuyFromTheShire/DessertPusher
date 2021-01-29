@@ -30,6 +30,10 @@ import com.example.android.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
 import kotlin.math.log
 
+const val KEY_REVENUE = "key_revenue"
+const val KEY_DESSERTS_SOLD = "key_desserts_sold"
+const val KEY_TIMER = "key_timer"
+
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private var revenue = 0
@@ -70,6 +74,12 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             onDessertClicked()
         }
         dessertTimer = DessertTimer(this.lifecycle)
+
+        if (savedInstanceState != null){
+            revenue = savedInstanceState.getInt(KEY_REVENUE)
+            dessertsSold = savedInstanceState.getInt(KEY_DESSERTS_SOLD)
+        }
+
         dessertTimer.startTimer()
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -146,6 +156,14 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE, revenue)
+        outState.putInt(KEY_DESSERTS_SOLD, dessertsSold)
+        outState.putParcelableArray(KEY_TIMER, dessertTimer)
+        Timber.i("onSaveInstanceState called")
+    }
+
     override fun onStart() {
         super.onStart()
         Timber.i("onStart called")
@@ -155,4 +173,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         super.onStop()
         Timber.i("onStop called")
     }
+}
+
+private fun Bundle.putParcelableArray(keyTimer: String, dessertTimer: DessertTimer) {
+    TODO("Not yet implemented")
 }
